@@ -1,6 +1,6 @@
 import click
 import os
-import imghdr
+import filetype
 import sys
 import colorama
 
@@ -8,9 +8,10 @@ import colorama
 def cli():
     pass
 
-def what(*args, **kwargs):
+def guess(*args, **kwargs):
     try:
-        return imghdr.what(*args, **kwargs)
+        g = filetype.guess(*args, **kwargs)
+        return g.extension if g is not None else g
     except PermissionError:
         return None
 
@@ -19,13 +20,14 @@ def unequal(x, y):
 
 @cli.command()
 @click.option('-s', '--showall', is_flag=True, help='Show all files regardless of detected extension mishaps')
-def detect(showall):
+@click.option('-p', '--picture', is_flag=True, help='Hard filter against original files being pictures.')
+def detect(showall, picture):
     colorama.init()
     path = os.getcwd()
     # Filter and map files down to absolute paths for FILES (not directories)
     files = map(lambda file : file, [file for file in os.listdir(path)]) # abspath of all files in curdir
     files = filter(os.path.isfile, files) # file not directory
-    files = zip(files, map(what, files)) # get scan of file type
+    files = zip(files, map(guess, files)) # get scan of file type
     files = filter(lambda x : x[1] is not None, files) # filter for only images
     files = list(map(lambda x : (x[0], os.path.splitext(x[0])[1], '.' + x[1]), files)) # find just the file extension and put into tuple
     if not showall:
