@@ -10,6 +10,8 @@ However, I'm not really intending this to be a big project, just a proof of conc
 
 If you'd like to improve my code, feel free to send in a PR or Issue with appropriate details. Thanks.
 
+*Warning: Contains almost entirely made of map/filter Python-Lisp functions*
+
 ## Demonstration
 
 Currently the only command is [`truefile detect`](https://github.com/Xevion/truefile/blob/cde1590a2a3e9340c35015526e6119323e96a8dc/truefile/cli.py#L24). I hope to add in a couple more commands and arguments that will better suite the end user (me).
