@@ -14,4 +14,5 @@ If you'd like to improve my code, feel free to send in a PR or Issue with approp
 
 Currently the only command is [`truefile detect`](https://github.com/Xevion/truefile/blob/cde1590a2a3e9340c35015526e6119323e96a8dc/truefile/cli.py#L24). I hope to add in a couple more commands and arguments that will better suite the end user (me).
 
-![](./image1.png)
+![Standard Default Mode](./image1.png)
+![Picture Mode](./image2.png)
